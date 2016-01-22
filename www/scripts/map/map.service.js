@@ -5,10 +5,10 @@
 		.module('barebone.map')
 		.factory('mapService', mapService);
 
-	mapService.$inject = ['positionService'];
+	mapService.$inject = [];
 
 	/* @ngInject */
-	function mapService(positionService) {
+	function mapService() {
 		var data = {
 			origin: {
 					latitude : 37.407,
@@ -20,15 +20,11 @@
 					latitude : 37.407,
 					longitude : -122.1
 			}, {
-					title : 'Ullamcorper eros.',
+					title : 'Ullamcorper eros.',								
 					latitude : 37.41,
 					longitude : -122.1
 			}]
 		};
 		return data;
-
-
-
-
 	}
 })();
