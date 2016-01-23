@@ -11,7 +11,7 @@ angular.module('config', [])
   ionicAppId: 'a3772a71',
   gcmId: '228071472080',
   vimeoAccessToken: 'd995ffff0228beba7c9716c3ee0d4add',
-  facebookAppId: '785803021527033',
+  facebookAppId: '522740477886463',
   facebookPermanentAccessToken: 'CAANL6xXrSHYBANNHhMUDugVZBHXfVQBMeWG6FmpYROWcOEmC2xze1BNiraZB87NCAZC3w08L7KhCBnhJItZCUzWCgBNzBjt0BkoV6qMoXjIZBjkWRTUGgZBR39OZAiP3DF76jufQ4hJ7xsdQc0l68vFAZAePdZCZAjkjTwaOeEZC22xi8ZAQYBqvNvYRgIfOZBzf4zRURHgrLtNazxzln8ZBkd9FZC7',
   facebookPage: 'apple.inc',
   instagramAppId: '2998ca20ed924ca3be22907c6ae77363',
