@@ -23,29 +23,31 @@
 			return $cordovaOauth.facebook(appId, scope).then(function(result) {
 				console.log('Success');
 				console.log(result);
+				//alert(JSON.stringify(result));
 
-				return result['access_token'];
+				return result.access_token;
 			}, function(error) {
 				console.log('Error');
 				console.log(error);
 			});
 		}
-		
+
 		function getProfile(authToken) {
 			var params = getParams(authToken);
+			//params.fields = 'id,name,email';
 			params.fields = 'id,name,email';
-
-			return $http.get(apiUrl + 'me', params).then(function(result) {
+			return $http.get(apiUrl + 'me?fields=id,name,email', params).then(function(result) {
 				return {
-					firstName: result.data['first_name'],
-					lastName: result.data['last_name'],
-					email: result.data['email']
+					name: result.data.name,
+					email: result.data.email,
+					id: result.data.id
 				};
 			}, function(error) {
 				console.log(error);
+				alert('error:' + JSON.stringify(error));
 			});
 		}
-		
+
 		function getParams(accessToken) {
 			return {
 				params: {
