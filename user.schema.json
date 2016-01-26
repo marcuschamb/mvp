@@ -38,13 +38,13 @@
 				"reefee": {
 					"type": "string",
 					"description": "User ID of the referree"
-				}
+				},
 				"date": {
 					"type": "string",
 					"description": "Date of referral"
 				}
 			}
-		},
+		}
 		"email": {
 			"type": "object",
 			"description": "email contact",
@@ -114,7 +114,7 @@
 					"required": [],
 					"properties": {}
 				}
-		}
+		},
 		"riderProfile": {
 			"type": "object",
 			"description": "rider account",
@@ -129,7 +129,6 @@
 			"properties": {
 
 			}
-
 		}
 	}
 }
