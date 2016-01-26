@@ -1,0 +1,132 @@
+{
+	"$schema": "http://json-schema.org/schema#",
+	"title": "User",
+	"type": "object",
+	"required": ["userID", "username", "pass"],
+	"properties": {
+		"userID": {
+			"type": "string",
+			"description": "User ID, concatenated authentication source and auth. token"
+		},
+		"username": {
+			"type": "string",
+			"description": "User name"
+		},
+		"pass": {
+			"type": "object",
+			"description": "properties vary by authentication method",
+			"required": [],
+			"properties": {}
+		},
+		"joinDate": {
+			"type": "date",
+			"description": "date of account creation"
+		},
+		"referralToken": {
+			"type": "string",
+			"description": "token for referrals by this user"
+		},
+		"referral": {
+			"type": "object",
+			"description": "a refferral relationship",
+			"required": [],
+			"properties": {
+				"reefer": {
+					"type": "string",
+					"description": "User ID of the referror"
+				},
+				"reefee": {
+					"type": "string",
+					"description": "User ID of the referree"
+				}
+			}
+		},
+		"email": {
+			"type": "object",
+			"description": "email contact",
+			"required": ["emailAddress"],
+			"properties": {
+				"emailAddress": {
+					"type": "string",
+					"description": "email address"
+				},
+				"primaryIND": {
+					"type": "boolean",
+					"description": "indicates users primary email"
+				}
+			}
+		},
+		"phone": {
+			"type": "object",
+			"description": "phone contact",
+			"required": ["phoneNumber"],
+			"properties": {
+				"phoneNumber": {
+					"type": "string",
+					"description": "phone number"
+				},
+				"phoneType": {
+					"type": "string",
+					"description": "type of phone number"
+				},
+				"primaryIND": {
+					"type": "boolean",
+					"description": "indicates users primary phone number"
+				}
+			}
+		},
+		"driverIND": {
+			"type": "boolean",
+			"description": "indicates whether driver features are active for this user"
+		},
+		"paymentAccount": {
+			"type": "object",
+			"description": "a payment account",
+			"required": [],
+			"properties": {
+				"accountType": {
+					"type": "string",
+					"description": "type of account"
+				},
+				"accountExpires": {
+					"type": "date",
+					"description": "expiration date of payment acount or null"
+				},
+				"accountAlias": {
+					"type": "string",
+					"description": "user-defined label for account"
+				},
+				"accountCreditable": {
+					"type": "boolean",
+					"description": "whether account can be credited"
+				},
+				"accountActive": {
+					"type": "boolean",
+					"description": "whether account can be used"
+				},
+				"accountObject": {
+					"type": "object",
+					"description": "properties vary by payment gateway",
+					"required": [],
+					"properties": {}
+				},
+				"riderProfile": {
+					"type": "object",
+					"description": "rider account",
+					"required": [],
+					"properties": {
+
+					},
+					"driverProfile": {
+						"type": "object",
+						"description": "rider account",
+						"required": [],
+						"properties": {
+
+						}
+					}
+				}
+			}
+		}
+	}
+}
