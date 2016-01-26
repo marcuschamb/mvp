@@ -1,6 +1,6 @@
 {
 	"$schema": "http://json-schema.org/schema#",
-	"title": "User",
+	"title": "user",
 	"type": "object",
 	"required": ["userID", "username", "pass"],
 	"properties": {
@@ -14,7 +14,7 @@
 		},
 		"pass": {
 			"type": "object",
-			"description": "properties vary by authentication method",
+			"description": "authentication; properties vary by authentication method",
 			"required": [],
 			"properties": {}
 		},
@@ -29,7 +29,7 @@
 		"referral": {
 			"type": "object",
 			"description": "a refferral relationship",
-			"required": [],
+			"required": ["reefer", "reefee"],
 			"properties": {
 				"reefer": {
 					"type": "string",
@@ -38,6 +38,10 @@
 				"reefee": {
 					"type": "string",
 					"description": "User ID of the referree"
+				}
+				"date": {
+					"type": "string",
+					"description": "Date of referral"
 				}
 			}
 		},
@@ -109,24 +113,23 @@
 					"description": "properties vary by payment gateway",
 					"required": [],
 					"properties": {}
-				},
-				"riderProfile": {
-					"type": "object",
-					"description": "rider account",
-					"required": [],
-					"properties": {
-
-					},
-					"driverProfile": {
-						"type": "object",
-						"description": "rider account",
-						"required": [],
-						"properties": {
-
-						}
-					}
 				}
+		}
+		"riderProfile": {
+			"type": "object",
+			"description": "rider account",
+			"required": [],
+			"properties": {
+
+			},
+		"driverProfile": {
+			"type": "object",
+			"description": "rider account",
+			"required": [],
+			"properties": {
+
 			}
+
 		}
 	}
 }
