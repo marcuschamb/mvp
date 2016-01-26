@@ -44,7 +44,7 @@
 					"description": "Date of referral"
 				}
 			}
-		}
+		},
 		"email": {
 			"type": "object",
 			"description": "email contact",
