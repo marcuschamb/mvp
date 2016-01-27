@@ -11,7 +11,8 @@
 	function TestController($http, localStorageService) {
 		var oauthTokenKey = 'oauthToken';
 		var vm = angular.extend(this, {
-			checkToken: checkToken
+			checkToken: checkToken,
+			response: ''
 		});
 
 		function checkToken() {
@@ -56,9 +57,11 @@
 			$http.get(url/*,{headers:{'oauthToken':vm.oauthToken.accessToken,'oauthService':vm.oauthToken.source}}*/)
 			.then(function(resp) {
 	        console.log('Transmission success: ' + JSON.stringify(resp));
+					vm.response = resp;
 	        // For JSON responses, resp.data contains the result
 	      }, function(err) {
 	        console.error('Transmission error: ', JSON.stringify(err));
+					vm.response = err;
 	        // err.status will contain the status code
 	      });
 
