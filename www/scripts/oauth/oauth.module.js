@@ -37,5 +37,5 @@
 					$state.go('app.oauth-login');
 				}
 			});
-		});;
+		});
 })();

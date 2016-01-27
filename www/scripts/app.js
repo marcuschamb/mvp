@@ -44,6 +44,7 @@ angular.module('starter', [
 	'barebone.tinder-cards',
 	'barebone.restaurant',
 	'barebone.stripe',
+	'barebone.test',
 	'gMaps',
 	'ngCordova'
 ])

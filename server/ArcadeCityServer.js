@@ -19,11 +19,23 @@ if (config.SSL) {
   });
 }
 
+
 /****************************************/
 /*** Core processing loop here **********/
 /****************************************/
-server.use(auth.authenticate); // authenticate this request first
+server.use(restify.CORS());
 
+server.opts(/.*/, function (req,res,next) {
+    res.header('Access-Control-Request-Headers', 'oauthToken, oauthService, Origin, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date');
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Headers', 'oauthToken, oauthService, Content-type, Accept');
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+    res.header('Access-Control-Expose-Headers', 'oauthToken, oauthService');
+    res.send(200);
+    return next();
+});
+
+server.use(auth.authenticate); // authenticate this request first
 
 function send(req, res, next) {
 

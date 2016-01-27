@@ -84,13 +84,17 @@ var validateAndReadToken = function(token) {
   return deferred.promise;
 };
 
+/*
+//
+// this is for testing....
+//
 console.log('validateAndReadToken');
 validateAndReadToken(token).then(function(result){
   console.log(result);
 },function(error){
   console.log(error);
 });
-
+*/
 
 /***************************************************************************/
 /*
