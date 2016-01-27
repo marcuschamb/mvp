@@ -5,5 +5,6 @@ module.exports = {
   'SSLKey': '/var/ssl/ssl.key',
   'SSL': true,
   'FBclientID': '<<Facebook App ID>>',
-  'FBclientSecret': '<<Facebook App Secret>>'
+  'FBclientSecret': '<<Facebook App Secret>>',
+  'CouchDBRoot': 'http://localhost:5984'
 };

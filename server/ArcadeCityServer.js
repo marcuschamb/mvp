@@ -1,5 +1,6 @@
 var restify = require('restify');
 var fs = require('fs');
+var q = require('q');
 var config = require('./config');
 
 var server;
@@ -16,6 +17,26 @@ if (config.SSL) {
     name: config.serverName
   });
 }
+
+/****************************************/
+/*** Core processing loop here **********/
+/****************************************/
+
+
+
+
+/****************************************/
+/**** start server **********************/
+/****************************************/
+
+server.listen(config.serverPort);
+console.log(config.serverName + ' listening on port ' + config.serverPort +
+  ( config.SSL ? ' with SSL ON' : ' with SSL OFF' ));
+
+
+
+
+/*
 
 function send(req, res, next) {
    res.send('hello ' + req.params.name);
@@ -34,41 +55,4 @@ function send(req, res, next) {
    return next();
  });
 
-
-function couch(req, res, next) {
-  //console.log('couch function...');
-  var client = restify.createClient({
-    url: 'http://localhost:5984'
-  });
-
-
-
-  client.get('/db/_design/design_doc/_view/view_name&include_docs=true', function(err, req) {
-    //assert.ifError(err); // connection error
-    res.charSet('utf-8');
-
-    req.on('result', function(err, res1) {
-
-      res1.setEncoding('utf8');
-      res1.on('data', function(chunk) {
-
-        res.write(chunk);
-      });
-
-      res1.on('end', function() {
-        res.end();
-      });
-    });
-  });
-
-
-
-}
-
-server.get('/couchdb', couch);
-
-
-
-server.listen(config.serverPort);
-console.log(config.serverName + ' listening on port ' + config.serverPort +
-  ( config.SSL ? ' with SSL ON' : ' with SSL OFF' ));
+*/
