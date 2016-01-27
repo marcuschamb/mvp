@@ -1,7 +1,6 @@
 ArcadeCity.ipa
 node_modules
 server/config.js
-www/scripts/configuration.js
 .idea
 .temp
 .sass-cache
