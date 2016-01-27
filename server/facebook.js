@@ -3,8 +3,6 @@ var q = require('q'); // promises library
 var config = require('./config');
 var FBURL = 'https://graph.facebook.com/v2.5/';
 
-//var token = 'CAAHbbgBZBfZC8BADLXYZCo5POT9IahlPG3MT56G0JKwNTTRVJrXUM67eMEwkfbntVE6vttsnjDZCExdANOZCd8M34aAf3mgmeYO9bGyGnc6zUpQFIipLhp329Dcb9ZBVvSqY8zeMCHoZC85NhDYIWUTtpZBYFzf8G95rUzDTs4I7bHv0zCSGOQkGauhlcZCH9ldgZD';
-
 var validateToken = function(token) {
   var deferred = q.defer();
 
