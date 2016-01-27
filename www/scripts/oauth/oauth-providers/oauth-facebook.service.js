@@ -22,7 +22,7 @@
 			var appId = ENV.facebookAppId;
 			return $cordovaOauth.facebook(appId, scope).then(function(result) {
 				console.log('Success');
-				console.log(result);
+				console.log(JSON.stringify(result));
 				//alert(JSON.stringify(result));
 
 				return result.access_token;

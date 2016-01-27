@@ -1,5 +1,6 @@
 ArcadeCity.ipa
 node_modules
+server/config.js
 .idea
 .temp
 .sass-cache
@@ -12,5 +13,4 @@ plugins
 *.swo
 *.log
 *.DS_Store
-deploy
 local

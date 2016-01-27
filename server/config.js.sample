@@ -1,0 +1,9 @@
+module.exports = {
+  'serverPort': 443,
+  'serverName': 'ArcadeCityServer',
+  'SSLCert': '/var/ssl/ssl.cert',
+  'SSLKey': '/var/ssl/ssl.key',
+  'SSL': true,
+  'FBclientID': '<<Facebook App ID>>',
+  'FBclientSecret': '<<Facebook App Secret>>'
+};
