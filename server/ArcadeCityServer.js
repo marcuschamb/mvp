@@ -2,6 +2,7 @@ var restify = require('restify');
 var fs = require('fs');
 var q = require('q');
 var config = require('./config');
+var auth = require('./auth');
 
 var server;
 if (config.SSL) {
@@ -21,7 +22,15 @@ if (config.SSL) {
 /****************************************/
 /*** Core processing loop here **********/
 /****************************************/
+server.use(auth.authenticate); // authenticate this request first
 
+
+function send(req, res, next) {
+
+   res.send('test ' + req.params.name);
+   return next();
+ }
+ server.get('/test/:name', send);
 
 
 
