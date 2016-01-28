@@ -2,6 +2,7 @@ ArcadeCity.ipa
 ArcadeCity.apk
 node_modules
 server/config.js
+server/node_modules
 .idea
 .temp
 .sass-cache
