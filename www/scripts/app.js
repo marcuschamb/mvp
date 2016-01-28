@@ -21,7 +21,6 @@ angular.module('starter', [
 	'barebone.position',
 	'barebone.feedback',
 	'barebone.oauth',
-	'barebone.lo-storage',
 	'barebone.stripe',
 	'barebone.test',
 	'gMaps',
