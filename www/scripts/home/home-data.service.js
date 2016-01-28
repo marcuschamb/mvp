@@ -10,10 +10,10 @@
 	/* @ngInject */
 	function homeDataService() {
 		return {
-			phoneNumber: '+306973216110',
-			email: 'skounis@gmail.com',
-			officeLocation: '37.7736854,-122.421034',
-			facebookPage: 'https://www.facebook.com/ionicframework'
+			phoneNumber: '+8005551212',
+			email: 'chris@arcade.city',
+			officeLocation: '43.0562442,-70.8111592',
+			facebookPage: 'https://www.facebook.com/ArcadeCityHall'
 		};
 	}
 })();

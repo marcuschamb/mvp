@@ -5,10 +5,10 @@
 		.module('barebone.menu')
 		.controller('MenuController', MenuController);
 
-	MenuController.$inject = ['chatsAuthService'];
+	MenuController.$inject = [];
 
 	/* @ngInject */
-	function MenuController(chatsAuthService) {
+	function MenuController() {
 
 	}
 })();
