@@ -15,7 +15,7 @@ var authenticate = function(req, res, next) {
           req.user = {};
           req.user.name = result.name;
           req.user.email = result.email;
-          req.user.id = result.id;
+          req.user._id = 'facebook-' + result.id;
           req.user.expiresAt = result.expiresAt;
           console.log('auth.js says req.user = ' + JSON.stringify(req.user));
           next();

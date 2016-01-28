@@ -11,9 +11,31 @@
 	function TestController($http, localStorageService) {
 		var oauthTokenKey = 'oauthToken';
 		var vm = angular.extend(this, {
+			testLogin: testLogin,
 			checkToken: checkToken,
 			response: ''
 		});
+
+		function testLogin() {
+			var url = 'http://192.168.1.104:4433/login';
+			var oauthToken = getOAuthToken();
+			if (vm.oauthToken) {
+				$http.defaults.headers.common.oauthToken = vm.oauthToken.accessToken;
+				$http.defaults.headers.common.oauthService = vm.oauthToken.source;
+				$http.get(url)
+				.then(function(resp) {
+		        console.log('Transmission success: ' + JSON.stringify(resp));
+						vm.response = resp;
+		        // For JSON responses, resp.data contains the result
+		      }, function(err) {
+		        console.error('Transmission error: ', JSON.stringify(err));
+						vm.response = err;
+		        // err.status will contain the status code
+		      });
+			} else {
+				alert('not logged in yet...');
+			}
+		}
 
 		function checkToken() {
 			var oauthToken = getOAuthToken();

@@ -3,6 +3,7 @@ var fs = require('fs');
 var q = require('q');
 var config = require('./config');
 var auth = require('./auth');
+var db = require('./db');
 
 /****************************************/
 /*** Setup and Authentication ***********/
@@ -37,7 +38,6 @@ server.use(auth.authenticate); // authenticate this request first
 /*** Core processing loop here **********/
 /****************************************/
 function send(req, res, next) {
-  console.log('send says req.user = ' + JSON.stringify(req.user));
    if (req.user) {
      res.send('test ' + req.params.name + ' from user: ' + req.user.name);
    } else {
@@ -47,7 +47,42 @@ function send(req, res, next) {
    return next();
  }
 
+ function login(req, res, next) {
+    if (req.user) {
+      db.getDoc(req.user._id).then(function(doc){
+        doc.lastLogin = Math.round(+new Date()/1000); // unix timestamp
+        db.saveDoc(doc).then(function(result){
+          console.log('login saved... ' + JSON.stringify(result));
+          res.send('OK');
+        }).catch(function(err){
+          console.log('login failed... ' + JSON.stringify(err));
+          res.send('FAILED');
+        });
+      }).catch(function(err){
+        if (err.status === 404) { // not found
+          req.user.createdAt = Math.round(+new Date()/1000);
+          req.user.lastLogin = req.user.createdAt;
+          delete req.user.expiresAt; // we don't need this -- it's for the token
+          db.saveDoc(req.user).then(function(result){
+            console.log('login user created... ' + JSON.stringify(result));
+            res.send('OK');
+          }).catch(function(err){
+            console.log('login user creation failed... ' + JSON.stringify(err));
+            res.send('FAILED');
+          });
+        }
+      });
+    } else {
+      res.send('FAILED');
+    }
+    return next();
+  }
+
+
+
 server.get('/test/:name', send);
+server.get('/login', login);
+
 
 /****************************************/
 /**** start server **********************/
