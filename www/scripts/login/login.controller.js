@@ -2,19 +2,24 @@
 	'use strict';
 
 	angular
-		.module('barebone.test')
-		.controller('TestController', TestController);
+		.module('barebone.login')
+		.controller('LoginController', LoginController);
 
-	TestController.$inject = ['$http', 'localStorageService'];
+	LoginController.$inject = ['$http', 'localStorageService'];
 
 	/* @ngInject */
-	function TestController($http, localStorageService) {
+	function LoginController($http, localStorageService) {
 		var oauthTokenKey = 'oauthToken';
 		var vm = angular.extend(this, {
 			testLogin: testLogin,
 			checkToken: checkToken,
-			response: ''
+			response: '',
+			facebookLogin: facebookLogin
 		});
+
+		function facebookLogin() {
+			alert('not ready yet... try again later');
+		}
 
 		function testLogin() {
 			var url = 'http://192.168.1.104:4433/login';
@@ -49,32 +54,12 @@
 				vm.oathToken = {'accessToken':null,'source':null};
 			}
 
-			/*
-			var req = {
-			 method: 'POST',
-			 url: 'http://example.com',
-			 headers: {
-			   'Content-Type': undefined
-			 },
-			 data: { test: 'test' }
-		 	};
-		 */
 		 var url = 'http://192.168.1.104:4433/test/testcontoller';
 
-		 /*
-			var headers = {
-				'oauthToken': vm.oauthToken.accessToken,
-				'oauthService': vm.oauthToken.source
-			};
-			*/
-
-			//$http(req).then(function(){...}, function(){...});
-			//console.log('Ready to send request now...');
 			if (vm.oauthToken) {
 				$http.defaults.headers.common.oauthToken = vm.oauthToken.accessToken;
 				$http.defaults.headers.common.oauthService = vm.oauthToken.source;
 			}
-			//$http.defaults.headers.common['X-Key'] = 'ABC';
 
 			$http.get(url/*,{headers:{'oauthToken':vm.oauthToken.accessToken,'oauthService':vm.oauthToken.source}}*/)
 			.then(function(resp) {
@@ -90,7 +75,6 @@
 		}
 
 		// ********************************************************************
-
 
 		function getOAuthToken() {
 			return localStorageService.get(oauthTokenKey);

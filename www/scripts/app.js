@@ -45,6 +45,7 @@ angular.module('starter', [
 	'barebone.restaurant',
 	'barebone.stripe',
 	'barebone.test',
+	'barebone.login',
 	'gMaps',
 	'ngCordova'
 ])
