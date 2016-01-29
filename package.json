@@ -21,7 +21,7 @@
     "com.ionic.keyboard",
     "cordova-plugin-console",
     "cordova-plugin-device",
-    "cordova-plugin-inappbrowser",
+    "cordova-plugin-inappbrowser@1.1.1 ",
     "cordova-plugin-geolocation",
     "cordova-plugin-network-information",
     "cordova-plugin-whitelist",
@@ -58,6 +58,7 @@
       },
       "locator": "https://github.com/Telerik-Verified-Plugins/Stripe",
       "id": "com.telerik.stripe"
-    }
+    },
+    "cordova-plugin-inappbrowser@1.1.1"
   ]
 }
