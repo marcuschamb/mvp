@@ -49,5 +49,6 @@ angular.module('starter', [
 .config(function($urlRouterProvider, $compileProvider) {
 	$compileProvider.imgSrcSanitizationWhitelist(/^\s*(https?|file|blob|cdvfile|content):|data:image\//);
 	// if none of the above states are matched, use this as the fallback
-	$urlRouterProvider.otherwise('/app/home');
+	//$urlRouterProvider.otherwise('/app/home');
+	$urlRouterProvider.otherwise('/app/oauth-profile');
 });
