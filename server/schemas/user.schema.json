@@ -12,6 +12,24 @@
 			"type": "string",
 			"description": "User name"
 		},
+		"name": {
+			"type": "object",
+			"description": "name(s)",
+			"required": ["firstName"],
+			"properties": {
+				"firstName": {
+					"type": "string",
+					"description": "primary name field"
+				},
+				"lastName": {
+					"type": "string"
+				},
+				"nameType": {
+					"type": "string",
+					"description": "indicate name of business, etc."
+				}
+			}
+		},
 		"pass": {
 			"type": "object",
 			"description": "authentication; properties vary by authentication method",
@@ -19,7 +37,7 @@
 			"properties": {}
 		},
 		"joinDate": {
-			"type": "date",
+			"type": "string",
 			"description": "date of account creation"
 		},
 		"referralToken": {
@@ -39,7 +57,7 @@
 					"type": "string",
 					"description": "User ID of the referree"
 				},
-				"date": {
+				"refferDate": {
 					"type": "string",
 					"description": "Date of referral"
 				}
@@ -88,12 +106,16 @@
 			"description": "a payment account",
 			"required": [],
 			"properties": {
+				"accountID": {
+					"type": "string",
+					"description": "AC internal refferance"
+				},
 				"accountType": {
 					"type": "string",
 					"description": "type of account"
 				},
 				"accountExpires": {
-					"type": "date",
+					"type": "string",
 					"description": "expiration date of payment acount or null"
 				},
 				"accountAlias": {
@@ -114,20 +136,238 @@
 					"required": [],
 					"properties": {}
 				}
-		},
-		"riderProfile": {
-			"type": "object",
-			"description": "rider account",
-			"required": [],
-			"properties": {
-
 			},
-		"driverProfile": {
-			"type": "object",
-			"description": "rider account",
-			"required": [],
-			"properties": {
+			"riderProfile": {
+				"type": "object",
+				"description": "rider account",
+				"required": [],
+				"properties": {
 
+
+				}
+			},
+			"driverProfile": {
+				"type": "object",
+				"description": "rider account",
+				"required": [],
+				"properties": {
+					"driverName": {
+						"type": "object",
+						"description": "optional alternate or trade name for this driver profile",
+						"required": [],
+						"properties": {
+							"firstName": {
+								"type": "string"
+							},
+							"lastName": {
+								"type": "string"
+							},
+							"nameType": {
+								"type": "string",
+								"description": "indicate name of business, etc."
+							}
+						}
+					},
+					"vehicle": {
+						"type": "object",
+						"description": "a vehicle available in this profile",
+						"required": ["vehicleID"],
+						"properties": {
+							"vehicleID": {
+								"type": "string",
+								"description": "AC internal UID for vehicle"
+							},
+							"make": {
+								"type": "string"
+							},
+							"model": {
+								"type": "string"
+							},
+							"year": {
+								"type": "string"
+							},
+							"color": {
+								"type": "string"
+							},
+							"seats": {
+								"type": "number",
+								"description": "count of seats available for passengers"
+							},
+							"plateNumber": {
+								"type": "string",
+								"description": "license plate number"
+							},
+							"plateIssuer": {
+								"type": "string",
+								"description": "license plate state or country"
+							},
+							"vehiclePic": {
+								"type": "string",
+								"description": "picture of the vehicle"
+							},
+							"platePic": {
+								"type": "string",
+								"description": "picture of the license plate"
+							}
+						}
+					},
+					"driverType": {
+						"type": "string",
+						"description": "permitted/bandit, etc"
+					},
+					"driverLevel": {
+						"type": "number",
+						"description": "driver level achieved"
+					},
+					"driverPoints": {
+						"type": "number",
+						"description": "verified dollars or equivalent collected on missions under this profile"
+					},
+					"driverPic": {
+						"type": "string",
+						"description": "driver's main profile picture"
+					},
+					"altPic": {
+						"type": "string",
+						"description": "additional driver picture"
+					},
+					"insurancePolicy": {
+						"type": "object",
+						"description": "an insurance policy attached to this profile",
+						"required": ["payee", "startDate", "endDate"],
+						"properties": {
+							"insurorName": {
+								"type": "string",
+								"description": "name of insurance provider"
+							},
+							"insuranceType": {
+								"type": "string",
+								"description": "category of insurance commercial/non-commercial, etc"
+							},
+							"policyNumber": {
+								"type": "string",
+								"description": "provider's policy number"
+							},
+							"vehicleID": {
+								"type": "string",
+								"description": "AC ID for a vehicle attached to this policy"
+							},
+							"startDate": {
+								"type": "string",
+								"description": "current policy effective date"
+							},
+							"endDate": {
+								"type": "string",
+								"description": "current policy expiration date"
+							},
+							"verifiedIND": {
+								"type": "boolean",
+								"description": "indicates if AC has verified this insurance policy"
+
+							}
+						}
+					},
+					"alternatePayee": {
+						"type": "object",
+						"description": "Franchise, employee, co-op, or commission arrangement for this driver profile",
+						"required": ["payee", "startDate", "endDate"],
+						"properties": {
+							"payee": {
+								"type": "string",
+								"description": "userID of payee"
+							},
+							"payToAccount": {
+								"type": "string",
+								"description": "accountID to receive pay"
+							},
+							"startDate": {
+								"type": "string",
+								"description": "relationship effective date"
+							},
+							"endDate": {
+								"type": "string",
+								"description": "relatuionship expiration date"
+							},
+							"payPercent": {
+								"type": "number",
+								"description": "percentage to transfer to payee"
+							},
+							"payPerRide": {
+								"type": "number",
+								"description": "fixed ammount to pay per ride"
+							}
+						}
+					},
+					"paymentOption": {
+						"type": "object",
+						"description": "A payment method accepted for this driver profile",
+						"required": [],
+						"properties": {
+							"paymentType": {
+								"type": "string",
+								"description": "cash, Visa, BTC, etc."
+							},
+							"paymentAccount": {
+								"type": "string",
+								"description": "AC accountID of accepted payment"
+							},
+							"activeIND": {
+								"type": "boolean",
+								"description": "Is this payment currently accepted?"
+							},
+							"alternatePayee": {
+								"type": "object",
+								"description": "Franchise, employee, co-op, or commission arrangement at the payment type level",
+								"required": ["payee", "startDate", "endDate"],
+								"properties": {
+									"payee": {
+										"type": "string",
+										"description": "userID of payee"
+									},
+									"payToAccount": {
+										"type": "string",
+										"description": "accountID to receive pay"
+									},
+									"startDate": {
+										"type": "string",
+										"description": "relationship effective date"
+									},
+									"endDate": {
+										"type": "string",
+										"description": "relatuionship expiration date"
+									},
+									"payPercent": {
+										"type": "number",
+										"description": "percentage to transfer to payee"
+									},
+									"payPerRide": {
+										"type": "number",
+										"description": "fixed ammount to pay per ride"
+									}
+								}
+							}
+						}
+					},
+					"driverMission": {
+						"type": "object",
+						"description": "a mission (ride) connected to this driver profile",
+						"required": ["missionID"],
+						"properties": {
+							"missionID": {
+								"type": "string",
+								"description": "AC internal UID for the mission"
+							},
+							"sourceID": {
+								"type": "string",
+								"description": "server instance which reported mission"
+							},
+							"timestamp": {
+								"type": "string",
+								"description": "time of last update to this mission"
+							}
+						}
+					}
+				}
 			}
 		}
 	}
