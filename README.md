@@ -1,70 +1,67 @@
 
-# Barebone Ionic
-This project is a generic Ionic application with ingredients that can be part of every modern Ionic application.
+# Arcade City
+Arcade City app and server components
+
+## System Requirements
+* **Node.js** [http://nodejs.org](http://nodejs.org)
+* **Cordova** [http://cordova.apache.org](http://cordova.apache.org)
+* **Ionic Framework** [http://ionicframework.com](http://ionicframework.com)
+
+### For building and testing
+* **Ionic Command Line Tools** [Setup Guide](https://www.npmjs.com/package/ionic)
+* **iOS Development Platform** [Setup Guide](http://cordova.apache.org/docs/en/5.1.1/guide/platforms/ios/index.html)
+* **Android Development Platform** [Setup Guide](http://cordova.apache.org/docs/en/5.1.1/guide/platforms/android/index.html)
+
+ 
+## Setup
+```bash
+$ ./install.sh
+```
+or manually run the commands:
+
+
+```bash
+$ npm install
+$ ionic state restore
+$ ionic resources
+$ cd ./server
+$ npm install
+$ cd ..
+```
 
 ## Run the app
-Use `ionic serve` to run the app for a browser preview
+Use `ionic serve -c -s` to run the app for a browser preview
 
 or
 
-use `ionic serve --lab` to run the app in a browser on two platforms at the same time.
+use `ionic serve --lab -c -s` to run the app in a browser on two platforms at the same time.
 
-### Add hooks
-```bash
-$ ionic hooks add
-```
-
-### Install plugins using package.json
-The required plugins should be installed before any platform addition and build. This could be done by calling the `ionic state restore` command.
-
-### Add a platform
-
-```bash
-$ ionic platform add ios
-```
-
-Supported Cordova platforms:
-
-```bash
-$ ionic platform add ios
-$ ionic platform add android
-```
-
-### Build the app
+## Build the app
 
 ```bash
 $ ionic build ios
 ```
 
-### Εmulate the app on simulator
+## Εmulate the app on simulator
 iOS:
 
 ```bash
-$ ionic emulate ios
+$ ionic emulate ios -c -s
 ```
 
 Android:
 
 ```bash
-$ ionic emulate android
+$ ionic emulate android -c -s
 ```
 
+
+For testing on Android, **Genymotion** is highly recommended.  See the [Genymotion Website](http://www.genymotion.com)
+
+## Ionic Framework
 For more information, see [Ionic Documentation](http://ionicframework.com/docs/).
 
-### Plugins installation
-
-Use the following commands and install all the plugins required by the app:
-```bash
-$ cordova plugin add {plugin id or url}
-```
-
-eg:
-
-```bash
-cordova plugin add cordova-plugin-inappbrowser
-```
-
-#### Used Cordova plugins
+## Used Cordova plugins
 In case that the required Cordova plugins are not installed while installing NodeJS dependencies, Cordova's command mentioned previously can be used to install the following plugins:
 
 * **com.ionic.keyboard** - It provides functions to make interacting with the keyboard easier, and fires events to indicate that the keyboard will hide/show.
@@ -85,12 +82,13 @@ In case that the required Cordova plugins are not installed while installing Nod
 * **cordova-sqlite-storage** - Native interface to sqlite in a Cordova/PhoneGap plugin for Android, iOS, Windows "Universal" (8.1), Amazon Fire-OS, and WP(7/8) with API similar to HTML5/Web SQL API (https://github.com/litehelpers/Cordova-sqlite-storage.git).
 * **com.telerik.stripe** - Stripe is a payment infrastructure for the internet. Stripe Cordova SDK is built around the well organized REST API (https://github.com/Telerik-Verified-Plugins/Stripe).
 
-## AdMob integration
-
-**To use AdMob you need:**
-1. Create an account on https://apps.admob.com
-2. Create an app
-3. Put iOS and Android keys to Gruntfile from the AdMob account
+## Run the server
+```bash
+$ cd ./server
+$ node ArcadeCityServer.js
+```
+### Run CouchDB locally
+* **CouchDB** [http://couchdb.apache.org](http://couchdb.apache.org)
 
 ## Third Party Licences
 * [Apache License](http://www.apache.org/licenses/)
