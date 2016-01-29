@@ -13,8 +13,28 @@
 		var vm = angular.extend(this, {
 			testLogin: testLogin,
 			checkToken: checkToken,
+			testServer: testServer,
 			response: ''
 		});
+
+		function testServer() {
+		  //var url = 'http://192.168.1.104:4433/test/testcontoller';
+			var url = 'https://dev.dmarie.com:4433/ping';
+
+			var startTime = (+new Date());
+		  $http.get(url)
+		    .then(function(resp) {
+					var endTime = (+new Date());
+					console.log('time: ' + (endTime-startTime));
+		      console.log('Transmission success: ' + JSON.stringify(resp));
+		      vm.response = resp.data + ' (' + (endTime-startTime) + 'ms)';
+		      // For JSON responses, resp.data contains the result
+		    }, function(err) {
+		      console.error('Transmission error: ', JSON.stringify(err));
+		      vm.response = err;
+		      // err.status will contain the status code
+		    });
+		}
 
 		function testLogin() {
 			var url = 'http://192.168.1.104:4433/login';

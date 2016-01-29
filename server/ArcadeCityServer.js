@@ -37,6 +37,10 @@ server.use(auth.authenticate); // authenticate this request first
 /****************************************/
 /*** Core processing loop here **********/
 /****************************************/
+function ping(req, res, next) {
+  res.send('pong');
+}
+
 function send(req, res, next) {
    if (req.user) {
      res.send('test ' + req.params.name + ' from user: ' + req.user.name);
@@ -79,7 +83,7 @@ function send(req, res, next) {
   }
 
 
-
+server.get('/ping', ping);
 server.get('/test/:name', send);
 server.get('/login', login);
 
