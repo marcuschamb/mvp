@@ -27,6 +27,8 @@ $ ionic resources
 $ cd ./server
 $ npm install
 $ cd ..
+$ cp www/scripts/configuration.js.sample www/scripts/configuration.js
+$ cp server/config.js.sample server/config.js
 ```
 
 ## Run the app
