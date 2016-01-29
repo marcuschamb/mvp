@@ -7,6 +7,7 @@ www/scripts/configuration.js
 .idea
 .temp
 .sass-cache
+.io-config.json
 app/bower_components
 coverage
 platforms
