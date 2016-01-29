@@ -11,7 +11,7 @@
 	function feedbackService($cordovaEmailComposer) {
 
 		var recipent = "chris@arcade.city";
-		var subject  = "Barebone - Feedback"
+		var subject  = "Arcade City App Feedback"
 
 		var service = {
 			sendEmail: sendEmail
