@@ -10,7 +10,7 @@
 	/* @ngInject */
 	function homeService($http, $q, localStorageService) {
     var oauthTokenKey = 'oauthToken';
-  
+
 		var service = {
 			serverLogin: serverLogin
 		};
@@ -31,7 +31,16 @@
 						//vm.response = resp;
 		        // For JSON responses, resp.data contains the result
             console.log('serverLogin resp: ' + JSON.stringify(resp));
-            alert(resp);
+						/*
+						  "data": {
+						    "name": "",
+						    "email": "",
+						    "_id": "",
+						    "expiresAt": ,
+						    "createdAt": ,
+						    "lastLogin": 
+						  }
+							*/
             deferred.resolve(resp);
 		      }, function(err) {
 		        console.error('Transmission error: ', JSON.stringify(err));
