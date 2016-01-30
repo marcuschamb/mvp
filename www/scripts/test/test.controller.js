@@ -195,6 +195,9 @@
 		//This function takes in latitude and longitude of two location and returns the distance between them as the crow flies (in km)
 		    function calcCrow(lat1, lon1, lat2, lon2)
 		    {
+					if (typeof lat1 === 'undefined' || typeof lon1 === 'undefined') {
+						return 0;
+					}
 		      var R = 6371; // km
 		      var dLat = toRad(lat2-lat1);
 		      var dLon = toRad(lon2-lon1);

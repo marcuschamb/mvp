@@ -60,6 +60,18 @@ $ sudo npm -g install ios-sim
 $ ionic emulate ios -c -s -l
 ```
 
+* To test on different devices (iPad, iPhone 4s, iPhone 5s, iPhone6, etc.), first list the available devices you have installed:
+
+```bash
+$ ios-sim showdevicetypes
+```
+
+* Then, to test on a specific device from the list, such as the iPad-Air, use:
+
+```bash
+$ ionic emulate ios --target="iPad-Air" -c -s -l
+```
+
 ###Android:
 
 The Android simulator is notoriously slow.  Genymotion is highly recommended as an alternative, plus it offers dozens of different device configurations for all the most-popular Android hardware:
