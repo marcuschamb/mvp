@@ -2,7 +2,7 @@
 	<ion-content>
 		<div class="padding">
 				Token: {{ vm.oauthToken }}<br />
-				Response: {{ vm.response }}
+				Response: <p ng-bind-html="vm.response"><p>
 				<button class="button button-full button-positive" ng-click="vm.checkToken()">Check Token</button>
 				<button class="button button-full button-positive" ng-click="vm.testLogin()">Record Login</button>
 				<button class="button button-full button-positive" ng-click="vm.testServer()">Server Response Test</button>

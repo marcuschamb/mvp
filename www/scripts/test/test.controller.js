@@ -19,21 +19,60 @@
 
 		function testServer() {
 		  //var url = 'http://192.168.1.104:4433/test/testcontoller';
-			var url = 'https://dev.dmarie.com:4433/ping';
+			var servers = [
+				{
+					'ip':'dev003.arcade.city',
+					'name':'do-sfo1-01'
+				},
+				{
+					'ip':'dev001.arcade.city',
+					'name':'do-nyc1-01'
+				},
+				{
+					'ip':'dev002.arcade.city',
+					'name':'do-tor1-01'
+				}
+			];
 
-			var startTime = (+new Date());
-		  $http.get(url)
-		    .then(function(resp) {
-					var endTime = (+new Date());
-					console.log('time: ' + (endTime-startTime));
-		      console.log('Transmission success: ' + JSON.stringify(resp));
-		      vm.response = resp.data + ' (' + (endTime-startTime) + 'ms)';
-		      // For JSON responses, resp.data contains the result
-		    }, function(err) {
-		      console.error('Transmission error: ', JSON.stringify(err));
-		      vm.response = err;
-		      // err.status will contain the status code
-		    });
+
+			Array.prototype.sortBy = function(p) {
+			  return this.slice(0).sort(function(a,b) {
+			    return (a[p] > b[p]) ? 1 : (a[p] < b[p]) ? -1 : 0;
+			  });
+			};
+
+			var output = [];
+			function test() {
+				if (servers.length === 0) {
+					//output.sort()
+					vm.response = JSON.stringify(output.sortBy('time')).replace(/\},/g,"},<br/>");
+					return;
+				}
+				var server = servers.shift();
+
+				var url = 'https://' + server.ip + '/ping';
+				var startTime = (+new Date());
+			  $http.get(url)
+			    .then(function(resp) {
+						var endTime = (+new Date());
+						console.log('time: ' + (endTime-startTime));
+			      console.log('Transmission success: ' + JSON.stringify(resp));
+			      vm.response = server.name + ': ' + resp.data + ' (' + (endTime-startTime) + 'ms)<br/>';
+						output.push({'name':server.name,'time':(endTime-startTime)});
+						test();
+			      // For JSON responses, resp.data contains the result
+			    }, function(err) {
+			      console.error('Transmission error: ', JSON.stringify(err));
+			      vm.response = JSON.stringify(err);
+						output.push({'name':server.name,'time':9999});
+						test();
+			      // err.status will contain the status code
+			    });
+
+
+
+			}
+			test();
 		}
 
 		function testLogin() {
