@@ -31,6 +31,7 @@
 						//vm.response = resp;
 		        // For JSON responses, resp.data contains the result
             console.log('serverLogin resp: ' + JSON.stringify(resp));
+						localStorageService.set('currentUser',resp.data);
 						/*
 						  "data": {
 						    "name": "",
@@ -38,7 +39,7 @@
 						    "_id": "",
 						    "expiresAt": ,
 						    "createdAt": ,
-						    "lastLogin": 
+						    "lastLogin":
 						  }
 							*/
             deferred.resolve(resp);

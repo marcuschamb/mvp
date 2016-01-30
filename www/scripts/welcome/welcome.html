@@ -1,7 +1,23 @@
 <ion-view view-title="Welcome">
 	<ion-content>
 		<div class="padding">
-			Welcome screen
+			Welcome screen<br><br>
+			here's what we know:<br><br>
+			<div>
+				{{ vm.currentUser.providerInfo.name }}
+			</div>
+			<div>
+				{{ vm.currentUser.providerInfo.email }}
+			</div>
+			<div>
+				user created: {{ vm.currentUser.createdAtLocal }}
+			</div>
+			<div>
+				last login: {{ vm.currentUser.lastLoginLocal }}
+			</div>
+			<div>
+				login expires: {{ vm.currentUser.expiresAtLocal }}
+			</div>
 		</div>
 	</ion-content>
 </ion-view>

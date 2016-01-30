@@ -13,11 +13,13 @@ var authenticate = function(req, res, next) {
         .then(function(result){
           //console.log('USER AUTHENTICATED: ' + JSON.stringify(result));
           req.user = {};
-          req.user.name = result.name;
-          req.user.email = result.email;
+          req.user.providerInfo = {};
+          req.user.providerInfo.provider = req.header('oauthService');
+          req.user.providerInfo.name = result.name;
+          req.user.providerInfo.email = result.email;
+          req.user.providerInfo.expiresAt = result.expiresAt;
           req.user._id = 'facebook-' + result.id;
-          req.user.expiresAt = result.expiresAt;
-          console.log('auth.js says req.user = ' + JSON.stringify(req.user));
+          //console.log('auth.js says req.user = ' + JSON.stringify(req.user));
           next();
 
           //USER AUTHENTICATED: {"name":"Mark Burggraf","id":"10209057040048199","email":"markb@mantisbible.com","secondsToExpiration":5173606,"isValid":true,"expiresAt":1459096155,"isExpired":false}

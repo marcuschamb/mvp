@@ -53,6 +53,8 @@ function send(req, res, next) {
 
  function login(req, res, next) {
     if (req.user) {
+      console.log('server login function recevied req.user:');
+      console.log(req.user);
       db.getDoc(req.user._id).then(function(doc){
         doc.lastLogin = Math.round(+new Date()/1000); // unix timestamp
         db.saveDoc(doc).then(function(result){
