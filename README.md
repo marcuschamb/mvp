@@ -44,21 +44,36 @@ use `ionic serve --lab -c -s` to run the app in a browser on two platforms at th
 $ ionic build ios
 ```
 
-## Εmulate the app on simulator
-iOS:
+## Testing the app on the simulator
+###iOS:
+
+* If the simulator environment is not yet installed, run:
 
 ```bash
-$ ionic emulate ios -c -s
+$ sudo npm -g install ios-sim
 ```
 
-Android:
+* Switch to the root folder of your project
+* Start the app in the simulator
 
 ```bash
-$ ionic emulate android -c -s
+$ ionic emulate ios -c -s -l
 ```
 
+###Android:
 
-For testing on Android, **Genymotion** is highly recommended.  See the [Genymotion Website](http://www.genymotion.com)
+The Android simulator is notoriously slow.  Genymotion is highly recommended as an alternative, plus it offers dozens of different device configurations for all the most-popular Android hardware:
+
+* Install **Genymotion** [Genymotion website](https://www.genymotion.com)
+* Create a virtual device
+* Start the virtual device
+* Switch to the root folder of your project
+* Then run the following command to start the app in the virtual device:
+
+```bash
+$ ionic run android -c -s -l
+```
+
 
 ## Ionic Framework
 For more information, see [Ionic Documentation](http://ionicframework.com/docs/).
