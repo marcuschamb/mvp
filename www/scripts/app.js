@@ -23,6 +23,7 @@ angular.module('starter', [
 	'barebone.oauth',
 	'barebone.stripe',
 	'barebone.test',
+	'barebone.about',
 	'gMaps',
 	'ngCordova',
 	'angularMoment', // MDB
@@ -50,5 +51,5 @@ angular.module('starter', [
 	$compileProvider.imgSrcSanitizationWhitelist(/^\s*(https?|file|blob|cdvfile|content):|data:image\//);
 	// if none of the above states are matched, use this as the fallback
 	//$urlRouterProvider.otherwise('/app/home');
-	$urlRouterProvider.otherwise('/app/oauth-profile');
+	$urlRouterProvider.otherwise('/app/home');
 });
