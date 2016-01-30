@@ -57,27 +57,28 @@ function send(req, res, next) {
         doc.lastLogin = Math.round(+new Date()/1000); // unix timestamp
         db.saveDoc(doc).then(function(result){
           console.log('login saved... ' + JSON.stringify(result));
-          res.send('OK');
+          //auth.js says req.user = {"name":"Mark Burggraf","email":"markb@mantisbible.com","_id":"facebook-10209104980366677","expiresAt":1459364536}
+          res.send(doc);
+          //res.send('OK');
         }).catch(function(err){
           console.log('login failed... ' + JSON.stringify(err));
-          res.send('FAILED');
+          res.send({'error':err,'step':'save user'});
         });
       }).catch(function(err){
         if (err.status === 404) { // not found
           req.user.createdAt = Math.round(+new Date()/1000);
           req.user.lastLogin = req.user.createdAt;
-          delete req.user.expiresAt; // we don't need this -- it's for the token
           db.saveDoc(req.user).then(function(result){
             console.log('login user created... ' + JSON.stringify(result));
-            res.send('OK');
+            res.send(req.user);
           }).catch(function(err){
             console.log('login user creation failed... ' + JSON.stringify(err));
-            res.send('FAILED');
+            res.send({'error':err,'step':'create user'});
           });
         }
       });
     } else {
-      res.send('FAILED');
+      res.send({'error':'no user sent','step':'receive user info'});
     }
     return next();
   }
