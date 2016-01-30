@@ -6,11 +6,11 @@
 		.controller('HomeController', HomeController);
 
 	HomeController.$inject = ['externalAppsService', '$ionicSideMenuDelegate', 'homeDataService',
-				'$ionicHistory', '$state', '$rootScope', 'oauthService'];
+				'$ionicHistory', '$state', '$rootScope', 'oauthService', 'localStorageService', 'homeService'];
 
 	/* @ngInject */
 	function HomeController(externalAppsService, $ionicSideMenuDelegate, homeDataService,
-				$ionicHistory, $state, $rootScope, oauthService) {
+				$ionicHistory, $state, $rootScope, oauthService, localStorageService, homeService) {
 
 		// do not allow the menu in this screen
 		$ionicSideMenuDelegate.canDragContent(false);
@@ -20,21 +20,12 @@
 			googleLogin: googleLogin,
 			twitterLogin: twitterLogin,
 
-			openFacebookPage: openFacebookPage,
-			news: news
+			openFacebookPage: openFacebookPage
 		});
 
 		function openFacebookPage() {
 			externalAppsService.openExternalUrl(homeDataService.facebookPage);
 		}
-
-		function news() {
-			$ionicHistory.nextViewOptions({
-				disableBack: true
-			});
-			$state.go($rootScope.returnToState || 'app.articles');
-		}
-
 
 		function facebookLogin() {
 			login('facebook');
@@ -51,11 +42,21 @@
 		function login(source) {
 			oauthService.login(source).then(function(result) {
 				//debugger;
-				//alert(JSON.stringify(result));
-				$ionicHistory.nextViewOptions({
-					disableBack: true
+				/*
+					result has:  { accessToken: 'AAAbxadfda34...', source: 'facebook'}
+				*/
+				homeService.serverLogin()
+				.then(function(result){
+
+					$ionicHistory.nextViewOptions({
+						disableBack: true
+					});
+					$state.go($rootScope.returnToState || 'app.welcome');
+
+				}).catch(function(err){
+					console.log('serverLogin err: ' + JSON.stringify(err));
 				});
-				$state.go($rootScope.returnToState || 'app.welcome');
+
 			});
 		}
 

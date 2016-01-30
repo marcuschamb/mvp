@@ -16,10 +16,12 @@
 
 
 		function logout() {
+			//console.log("logout: oauthService.logout();");
 			oauthService.logout();
 			$ionicHistory.nextViewOptions({
 				disableBack: true
 			});
+			//console.log("logout: $state.go('app.home')");
 			$state.go('app.home');
 		}
 

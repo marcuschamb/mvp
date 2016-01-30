@@ -21,8 +21,8 @@
 		function login() {
 			var appId = ENV.facebookAppId;
 			return $cordovaOauth.facebook(appId, scope).then(function(result) {
-				console.log('Success');
-				console.log(JSON.stringify(result));
+				//console.log('Success');
+				//console.log(JSON.stringify(result));
 				//alert(JSON.stringify(result));
 
 				return result.access_token;
