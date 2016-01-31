@@ -12,6 +12,7 @@
     var oauthTokenKey = 'oauthToken';
 
 		var service = {
+			sendToServer: sendToServer
 			//serverLogin: serverLogin
       //getCurrentUser: getCurrentUser
 		};
@@ -21,6 +22,28 @@
     (function activate() {
 
 		})();
+
+		/*
+		http://api1.arcade.city/v1/referralsignup?type=[driver|rider]&name=[name]&email=[email]&referrerfbid=[fbid]
+		*/
+
+		function sendToServer(form) {
+			//{"name":"Mark b","email":"asdfasdf@adsfasdf.com","ride":true}
+			form.referrerfbid = localStorageService.get('currentUser')._id.replace('facebook-','');
+			var url = 'http://api1.arcade.city/v1/referralsignup';
+      var deferred = $q.defer();
+
+				$http.get(url,{'params':form})
+				.then(function(resp) {
+		        console.log('Transmission success: ' + JSON.stringify(resp));
+            deferred.resolve(resp);
+		      }, function(err) {
+		        console.error('Transmission error: ', JSON.stringify(err));
+            deferred.reject({'err':err});
+						//vm.response = err;
+		        // err.status will contain the status code
+		      });
+		}
 
 
     function getMyProfile() {
