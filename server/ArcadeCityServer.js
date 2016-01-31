@@ -51,6 +51,19 @@ function send(req, res, next) {
    return next();
  }
 
+ function me(req, res, next) {
+   if (req.user) {
+     db.getDoc(req.user._id).then(function(doc){
+       res.send(doc);
+     })
+     .catch(function(err){
+       res.send({'error':err});
+     });
+   } else {
+     res.send({'error':'no valid user'});
+   }
+ }
+
  function login(req, res, next) {
     if (req.user) {
       console.log('server login function recevied req.user:');
@@ -89,6 +102,7 @@ function send(req, res, next) {
 server.get('/ping', ping);
 server.get('/test/:name', send);
 server.get('/login', login);
+server.get('/me', me);
 
 
 /****************************************/

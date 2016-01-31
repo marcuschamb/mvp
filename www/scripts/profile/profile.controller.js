@@ -10,12 +10,23 @@
 	/* @ngInject */
 	function ProfileController(profileService) {
 		var vm = angular.extend(this, {
-			currentUser: null
+			currentUser: null,
+			updateUserInfo: updateUserInfo
 		});
 
 		(function activate() {
-			vm.currentUser = profileService.getCurrentUser();
+			updateUserInfo();
 		})();
+
+		function updateUserInfo() {
+			profileService.getCurrentUser().then(function(result){
+				vm.currentUser = result;
+			})
+			.catch(function(err){
+				console.log("profileService.getCurrentUser() error: " + JSON.stringify(err));
+				vm.currentUser = null;
+			});
+		}
 
 
 	}
