@@ -142,8 +142,140 @@
 				"description": "rider account",
 				"required": [],
 				"properties": {
-
-
+					"profileAlias": {
+						"type": "string",
+						"description": "User-facing name for this profile"
+					},
+					"riderName": {
+						"type": "object",
+						"description": "optional alternate public name for this rider profile",
+						"required": [],
+						"properties": {
+							"firstName": {
+								"type": "string"
+							},
+							"lastName": {
+								"type": "string"
+							},
+							"nameType": {
+								"type": "string",
+								"description": "indicate name of business, etc."
+							}
+						}
+					},
+					"riderLevel": {
+						"type": "number",
+						"description": "rider level achieved"
+					},
+					"riderPoints": {
+						"type": "number",
+						"description": "verified dollars spent under this profile"
+					},
+					"riderPic": {
+						"type": "string",
+						"description": "rider's main profile picture"
+					},
+					"riderRatings": {
+						"type": "object",
+						"description": "summary of ratings",
+						"required": [],
+						"properties": {
+							"ratings": {
+								"type": "number",
+								"description": "total count of ratings"
+							},
+							"avgRating": {
+								"type": "number",
+								"description": "mean of ratings"
+							}
+						}
+					},
+					"alternatePayer": {
+						"type": "object",
+						"description": "Alternate payer for this rider's rides",
+						"required": ["payer", "startDate", "endDate"],
+						"properties": {
+							"payer": {
+								"type": "string",
+								"description": "userID of payer"
+							},
+							"payFromAccount": {
+								"type": "string",
+								"description": "accountID to to pay from"
+							},
+							"startDate": {
+								"type": "string",
+								"description": "relationship effective date"
+							},
+							"endDate": {
+								"type": "string",
+								"description": "relationship expiration date"
+							},
+							"payPercent": {
+								"type": "number",
+								"description": "percentage of ride paid by alternate payer"
+							},
+							"maxPerRide": {
+								"type": "number",
+								"description": "fixed maximum ammount to pay per ride"
+							},
+							"effectiveRange": {
+								"type": "object",
+								"description": "time and/or location boundaries of this alternate payor relationship",
+								"required": [],
+								"properties": {
+									"timeRange": {
+										"type": "object",
+										"description": "Time period for relationship to be in effect",
+										"required": [],
+										"properties": {
+											"startTime": {
+												"type": "string",
+												"description": "start time of day"
+											},
+											"endTime": {
+												"type": "string",
+												"description": "end time of day"
+											},
+											"days": {
+												"type": "array",
+												"description": "days of the week"
+											}
+										}
+									},
+									"geoRange": {
+										"type": "array",
+										"description": "postal codes in geographic range"
+									}
+								}
+							},
+							"expenseIntegration": {
+								"type": "object",
+								"description": "integration with expense reporting system; properties vary by target system",
+								"required": [],
+								"properties": {}
+							}
+						}
+					},
+					"riderMission": {
+						"type": "object",
+						"description": "a mission (ride) connected to this rider profile",
+						"required": ["missionID"],
+						"properties": {
+							"missionID": {
+								"type": "string",
+								"description": "AC internal UID for the mission"
+							},
+							"sourceID": {
+								"type": "string",
+								"description": "server instance which created mission"
+							},
+							"timestamp": {
+								"type": "string",
+								"description": "timestamp of last update to this mission"
+							}
+						}
+					}
 				}
 			},
 			"driverProfile": {
@@ -151,6 +283,10 @@
 				"description": "rider account",
 				"required": [],
 				"properties": {
+					"profileAlias": {
+						"type": "string",
+						"description": "User-facing name for this profile"
+					},
 					"driverName": {
 						"type": "object",
 						"description": "optional alternate or trade name for this driver profile",
@@ -222,6 +358,21 @@
 					"driverPoints": {
 						"type": "number",
 						"description": "verified dollars or equivalent collected on missions under this profile"
+					},
+					"driverRatings": {
+						"type": "object",
+						"description": "summary of ratings",
+						"required": [],
+						"properties": {
+							"ratings": {
+								"type": "number",
+								"description": "total count of ratings"
+							},
+							"avgRating": {
+								"type": "number",
+								"description": "mean of ratings"
+							}
+						}
 					},
 					"driverPic": {
 						"type": "string",
@@ -295,6 +446,36 @@
 							"payPerRide": {
 								"type": "number",
 								"description": "fixed ammount to pay per ride"
+							},
+							"effectiveRange": {
+								"type": "object",
+								"description": "time and/or location boundaries of this relationship",
+								"required": [],
+								"properties": {
+									"timeRange": {
+										"type": "object",
+										"description": "Time period of effect",
+										"required": [],
+										"properties": {
+											"startTime": {
+												"type": "string",
+												"description": "start time of day"
+											},
+											"endTime": {
+												"type": "string",
+												"description": "end time of day"
+											},
+											"days": {
+												"type": "array",
+												"description": "days of the week"
+											}
+										}
+									},
+									"geoRange": {
+										"type": "array",
+										"description": "postal codes geographic range"
+									}
+								}
 							}
 						}
 					},
@@ -343,8 +524,80 @@
 									"payPerRide": {
 										"type": "number",
 										"description": "fixed ammount to pay per ride"
+									},
+									"effectiveRange": {
+										"type": "object",
+										"description": "time and/or location boundaries of this relationship",
+										"required": [],
+										"properties": {
+											"timeRange": {
+												"type": "object",
+												"description": "Time period of effect",
+												"required": [],
+												"properties": {
+													"startTime": {
+														"type": "string",
+														"description": "start time of day"
+													},
+													"endTime": {
+														"type": "string",
+														"description": "end time of day"
+													},
+													"days": {
+														"type": "array",
+														"description": "days of the week"
+													}
+												}
+											},
+											"geoRange": {
+												"type": "array",
+												"description": "postal codes of geographic range"
+											}
+										}
 									}
 								}
+							}
+						}
+					},
+					"availabilityRange": {
+						"type": "object",
+						"description": "time and/or location the driver is available for scheduling",
+						"required": [],
+						"properties": {
+							"defaultInd": {
+								"type": "boolean",
+								"description": "flag for a driver's default work schedule"
+							},
+							"startDate": {
+								"type": "string",
+								"description": "schedule effective date"
+							},
+							"endDate": {
+								"type": "string",
+								"description": "schedule end date"
+							},
+							"timeRange": {
+								"type": "object",
+								"description": "Time period of effect",
+								"required": [],
+								"properties": {
+									"startTime": {
+										"type": "string",
+										"description": "start time of day"
+									},
+									"endTime": {
+										"type": "string",
+										"description": "end time of day"
+									},
+									"days": {
+										"type": "array",
+										"description": "days of the week"
+									}
+								}
+							},
+							"geoRange": {
+								"type": "array",
+								"description": "postal codes of geographic range"
 							}
 						}
 					},
@@ -359,11 +612,11 @@
 							},
 							"sourceID": {
 								"type": "string",
-								"description": "server instance which reported mission"
+								"description": "server instance which created mission"
 							},
 							"timestamp": {
 								"type": "string",
-								"description": "time of last update to this mission"
+								"description": "timestamp of last update to this mission"
 							}
 						}
 					}
