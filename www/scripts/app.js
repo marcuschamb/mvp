@@ -26,6 +26,7 @@ angular.module('starter', [
 	'barebone.about',
 	'barebone.welcome',
 	'barebone.profile',
+	'barebone.referrals',
 	'gMaps',
 	'ngCordova',
 	'angularMoment', // MDB

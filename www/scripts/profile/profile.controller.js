@@ -20,6 +20,7 @@
 
 		function updateUserInfo() {
 			profileService.getCurrentUser().then(function(result){
+				console.log('setting vm.currentUser to: ' + JSON.stringify(result).replace(/,/g,',\n'));
 				vm.currentUser = result;
 			})
 			.catch(function(err){

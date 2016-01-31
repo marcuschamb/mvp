@@ -26,7 +26,10 @@
       var deferred = $q.defer();
       //return localStorageService.get('currentUser');
       getMyProfile().then(function(result){
-        deferred.resolve(result.data);
+        if (!result.email && result.providerInfo && result.providerInfo.email) {
+          result.email = result.providerInfo.email;
+        }
+        deferred.resolve(result);
       }).catch(function(err){
         deferred.reject({'error':err});
       });
@@ -43,14 +46,8 @@
 				$http.get(url)
 				.then(function(resp) {
 		        console.log('Transmission success: ' + JSON.stringify(resp));
-						//vm.response = resp;
-		        // For JSON responses, resp.data contains the result
-            //console.log('getMyProfile resp: ' + JSON.stringify(resp));
-            //console.log('localStorageService now has this: ' + JSON.stringify(localStorageService.get('currentUser')));
-            //console.log('should we change it to this?');
-            //console.log(JSON.stringify(resp.data));
 						localStorageService.set('currentUser',resp.data);
-            deferred.resolve(resp);
+            deferred.resolve(resp.data);
 		      }, function(err) {
 		        console.error('Transmission error: ', JSON.stringify(err));
             deferred.reject({'err':err});

@@ -1,7 +1,13 @@
 <ion-view view-title="My Profile">
+	<ion-nav-buttons side="right">
+        <button class="button icon ion-refresh" ng-click="vm.updateUserInfo()"></button>
+  </ion-nav-buttons>
+
 	<ion-content>
 		<div class="padding">
-			{{ vm.currentUser }}
+			first name: {{ vm.curentUser.firstName }}<br>
+			last name: {{ vm.curentUser.lastName }}<br>
+			email: {{ vm.curentUser.email }}<br>
 		</div>
 	</ion-content>
 </ion-view>
