@@ -23,6 +23,25 @@
 			openFacebookPage: openFacebookPage
 		});
 
+		(function activate() {
+			// check to see if we're already logged in and not expired
+			var currentUser = homeService.getCurrentUser();
+			var currentUnixTime = Math.round(+new Date()/1000);
+			if (currentUser !== null && currentUser.providerInfo.expiresAt > currentUnixTime) {
+
+				setTimeout(function(){
+					$ionicHistory.nextViewOptions({
+						disableBack: true
+					});
+
+					$state.go($rootScope.returnToState || 'app.welcome');					
+				},1000);
+			} else {
+				console.log('currentUser: ' + JSON.stringify(currentUser));
+			}
+		})();
+
+
 		function openFacebookPage() {
 			externalAppsService.openExternalUrl(homeDataService.facebookPage);
 		}

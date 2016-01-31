@@ -41,6 +41,7 @@
 				oauthService.logout();
 			}
 			setOAuthToken(null);
+			localStorageService.set('currentUser', null);
 		}
 
 		function getProfile() {

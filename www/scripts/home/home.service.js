@@ -12,7 +12,9 @@
     var oauthTokenKey = 'oauthToken';
 
 		var service = {
-			serverLogin: serverLogin
+			serverLogin: serverLogin,
+			getOAuthToken: getOAuthToken,
+			getCurrentUser: getCurrentUser
 		};
 		return service;
 
@@ -61,6 +63,10 @@
     function getOAuthToken() {
 			return localStorageService.get(oauthTokenKey);
 		}
+		function getCurrentUser() {
+			return localStorageService.get('currentUser');
+		}
+
 
 
 	}
