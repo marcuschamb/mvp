@@ -1,8 +1,35 @@
-<ion-view view-title="Arcade City">
+<ion-view view-title="Sign Up">
 
 	<ion-content>
-		<h1>Referrals</h1>
 		<div class="padding">
+			<div class="center"><h5>for Arcade City</h5></div>
+
+			<div class="list">
+			  <label class="item item-input">
+			    <span class="input-label">Name</span>
+			    <input type="text" placeholder="enter the name here">
+			  </label>
+			  <label class="item item-input">
+			    <span class="input-label">Email</span>
+					<input type="text" placeholder="enter email address here">
+			  </label>
+
+				<!--<label class="item item-input item-stacked-label">-->
+
+				<label class="item item-input">
+			    <span class="input-label col-offset-10">I want to:</span>
+					<ion-list>
+					  <ion-checkbox ng-model="filter.blue">Ride</ion-checkbox>
+					  <ion-checkbox ng-model="filter.yellow">Drive</ion-checkbox>
+					</ion-list>
+			  </label>
+				<button class="button button-block button-positive">Submit</button>
+
+			  <!--</label>-->
+
+
+
+			</div>
 
 		</div>
 	</ion-content>
